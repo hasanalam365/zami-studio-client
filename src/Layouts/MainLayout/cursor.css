@@ -1,31 +1,47 @@
 .cursor-bubble {
   position: fixed;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   pointer-events: none;
   border-radius: 50%;
+  z-index: 99999;
 
-  /* Green gradient based on your uploaded color */
-  background: radial-gradient(circle, #baffc9, #6dfc8b);
+  /* 🔴 Red neon gradient */
+  background: radial-gradient(circle, #ff4d4d, #b30000);
 
-  /* Stronger glow */
-  box-shadow: 
-    0 0 8px #8affad,
-    0 0 16px #5aff8a,
-    0 0 24px #3aff76;
+  /* 🔥 stronger red glow (glass neon style) */
+  box-shadow:
+    0 0 10px #ff4d4d,
+    0 0 20px #ff1a1a,
+    0 0 35px rgba(255, 0, 0, 0.6),
+    0 0 60px rgba(255, 0, 0, 0.3);
 
   transform: translate(-50%, -50%);
-  animation: fadeOut 0.55s linear forwards;
-  z-index: 99999;
+  animation: cursorFade 0.6s ease-out forwards;
 }
 
-@keyframes fadeOut {
+/* ✨ smoother fade + float shrink */
+@keyframes cursorFade {
   0% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -55%) scale(0.9);
+  }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.4);
+    transform: translate(-50%, -60%) scale(0.3);
   }
+}
+
+/* 🧠 optional: trailing soft ring effect */
+.cursor-bubble::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.15);
+  filter: blur(6px);
 }
