@@ -10,16 +10,16 @@ const SectionHeader = ({ heading, subHeading }) => {
       className="mb-16 text-center"
     >
       <h1 className="mb-4 text-4xl font-extrabold md:text-5xl">
-        <span className="text-transparent bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text">
+        <span className="text-red-600">
           {heading}
         </span>
       </h1>
 
-      <p className="max-w-xl mx-auto text-gray-600">
+      <p className="max-w-xl mx-auto text-white">
         {subHeading}
       </p>
 
-      <div className="w-24 h-1 mx-auto mt-6 rounded-full bg-gradient-to-r from-green-500 to-blue-500" />
+      <div className="w-24 h-1 mx-auto mt-6 rounded-full bg-gradient-to-r from-red-500 to-blue-black" />
     </motion.div>
   )
 }

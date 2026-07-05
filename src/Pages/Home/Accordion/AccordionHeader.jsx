@@ -1,105 +1,93 @@
-import React from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import React from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const AccordionHeader = () => {
-  const controls = useAnimation()
-  const [ref, inView] = useInView({ threshold: 0.25 })
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.25 });
 
   React.useEffect(() => {
-    if (inView) {
-      controls.start('visible')
-    } else {
-      controls.start('hidden')
-    }
-  }, [controls, inView])
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
+  }, [controls, inView]);
 
   const variants = {
     hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
-  }
+  };
 
   return (
-    <motion.div
-      ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate={controls}
-      className="w-[95%] md:w-[90%] lg:w-[85%] mx-auto my-10 text-center"
-    >
-      {/* Top Badge */}
-      <motion.span
-        className="inline-block mb-6 px-6 py-2 text-xs font-bold tracking-widest uppercase
-        rounded-full bg-gradient-to-r from-[#ff6a00] to-[#ffb347] text-white shadow-lg"
+    <section className="py-20 bg-black">
+      <motion.div
+        ref={ref}
+        variants={variants}
+        initial="hidden"
+        animate={controls}
+        className="w-[95%] md:w-[90%] lg:w-[85%] mx-auto text-center"
       >
-        Pay-Monthly Website Solutions
-      </motion.span>
-
-      {/* Main Statement */}
-      <motion.h2 className="mb-6 text-3xl font-black leading-snug md:text-4xl lg:text-5xl">
-        <span className="block">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-teal-400 to-blue-500">
-            Pay-monthly website solutions
-          </span>{' '}
-          designed to grow with your business.
+        {/* BADGE */}
+        <span className="inline-block px-6 py-2 mb-6 text-xs font-bold tracking-widest text-white uppercase rounded-full shadow-lg bg-gradient-to-r from-red-700 to-red-500">
+          Pay-Monthly Website Solutions
         </span>
-      </motion.h2>
 
-      {/* Subheadline */}
-      <motion.p className="max-w-3xl mx-auto mb-10 text-lg font-semibold text-gray-700 md:text-xl">
-        We seamlessly combine{' '}
-        <span className="font-bold text-orange-500">website design</span>,{' '}
-        <span className="font-bold text-purple-500">ongoing maintenance</span>,{' '}
-        <span className="font-bold text-teal-500">CRM</span>, and{' '}
-        <span className="font-bold text-green-500">marketing</span> with{' '}
-        <span className="font-bold text-transparent bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text">
-          AI-powered tools
-        </span>{' '}
-        that enhance performance, user engagement, and conversions. Our intelligent
-        systems optimise content, automate workflows, and keep your site evolving as your
-        business grows.
-      </motion.p>
+        {/* TITLE */}
+        <h2 className="mb-6 text-3xl font-black text-white md:text-5xl">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
+            Pay-monthly website solutions
+          </span>{" "}
+          designed to grow with your business.
+        </h2>
 
-      {/* Feature Grid */}
-      <motion.div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto mb-12 md:grid-cols-3">
-        <div className="p-6 transition-transform duration-300 shadow-lg rounded-xl bg-gradient-to-r from-green-50 to-green-100 hover:scale-105">
-          <h4 className="mb-2 text-lg font-bold text-green-600">
-            Design & Maintenance
-          </h4>
-          <p className="text-sm text-gray-700">
-            Modern UI, fast-loading pages, continuous updates, and SEO-ready architecture.
-          </p>
+        {/* SUB TEXT */}
+        <p className="max-w-3xl mx-auto mb-12 text-lg text-white/70">
+          We combine{" "}
+          <span className="font-semibold text-red-500">design</span>,{" "}
+          <span className="font-semibold text-white">maintenance</span>,{" "}
+          <span className="font-semibold text-red-400">CRM</span>, and{" "}
+          <span className="font-semibold text-white">marketing</span> with AI-powered systems
+          that improve conversions and performance.
+        </p>
+
+        {/* GRID */}
+        <div className="grid max-w-5xl grid-cols-1 gap-6 mx-auto md:grid-cols-3">
+          
+          {/* CARD 1 */}
+          <div className="p-6 transition bg-black border rounded-xl border-white/10 hover:border-red-500/40">
+            <h4 className="mb-2 font-bold text-red-500">Design & Maintenance</h4>
+            <p className="text-sm text-white/70">
+              Modern UI, SEO-ready structure, fast performance, continuous updates.
+            </p>
+          </div>
+
+          {/* CARD 2 */}
+          <div className="p-6 transition bg-black border rounded-xl border-white/10 hover:border-red-500/40">
+            <h4 className="mb-2 font-bold text-white">CRM & Marketing</h4>
+            <p className="text-sm text-white/70">
+              Lead capture, automation workflows, and conversion optimization tools.
+            </p>
+          </div>
+
+          {/* CARD 3 */}
+          <div className="p-6 transition bg-black border rounded-xl border-white/10 hover:border-red-500/40">
+            <h4 className="mb-2 font-bold text-red-400">AI & Hosting</h4>
+            <p className="text-sm text-white/70">
+              AI optimization, secure hosting, SSL, domain, and support included.
+            </p>
+          </div>
         </div>
 
-        <div className="p-6 transition-transform duration-300 shadow-lg rounded-xl bg-gradient-to-r from-purple-50 to-purple-100 hover:scale-105">
-          <h4 className="mb-2 text-lg font-bold text-purple-600">CRM & Marketing</h4>
-          <p className="text-sm text-gray-700">
-            Integrated CRM and marketing tools to capture leads, automate workflows, and convert visitors.
-          </p>
-        </div>
-
-        <div className="p-6 transition-transform duration-300 shadow-lg rounded-xl bg-gradient-to-r from-orange-50 to-orange-100 hover:scale-105">
-          <h4 className="mb-2 text-lg font-bold text-orange-600">AI & Hosting</h4>
-          <p className="text-sm text-gray-700">
-            AI-driven optimisation, secure hosting, free domain, email, SSL, and ongoing support.
-          </p>
-        </div>
+        {/* FOOT TEXT */}
+        <p className="max-w-3xl mx-auto mt-12 text-white/60">
+          All packages are designed to match modern SaaS standards with performance,
+          security, and scalability in mind.
+        </p>
       </motion.div>
+    </section>
+  );
+};
 
-      {/* Closing Line */}
-      <motion.p className="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700 md:text-xl">
-        With our all-in-one monthly packages, you benefit from the latest web and AI
-        technologies backed by reliable, hands-on support. Each package includes a free
-        domain, secure hosting, professional email, SSL certification, continuous
-        maintenance, and AI-driven optimisation—delivering a stress-free, future-ready
-        website built for long-term success.
-      </motion.p>
-    </motion.div>
-  )
-}
-
-export default AccordionHeader
+export default AccordionHeader;

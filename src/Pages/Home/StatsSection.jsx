@@ -24,17 +24,16 @@ const StatsSection = () => {
   }, [inView]);
 
   return (
-    <section
-      ref={ref}
-      className="relative py-16 overflow-hidden bg-white"
-    >
-      {/* soft background glow */}
+    <section ref={ref} className="relative py-20 overflow-hidden bg-black">
+
+      {/* 🔴 background glow */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-[420px] h-[420px] bg-indigo-300/30 blur-[160px]" />
-        <div className="absolute bottom-0 right-1/4 w-[420px] h-[420px] bg-purple-300/30 blur-[160px]" />
+        <div className="absolute top-10 left-1/4 w-[420px] h-[420px] bg-red-600/20 blur-[160px]" />
+        <div className="absolute bottom-10 right-1/4 w-[420px] h-[420px] bg-white/10 blur-[160px]" />
       </div>
 
       <div className="grid max-w-6xl grid-cols-1 gap-10 px-6 mx-auto text-center md:grid-cols-3">
+
         {stats.map((item, index) => (
           <motion.div
             key={index}
@@ -47,14 +46,15 @@ const StatsSection = () => {
             }}
             className="relative group"
           >
-            {/* glow border */}
-            <div className="absolute inset-0 transition opacity-0 group-hover:opacity-100 blur-2xl bg-gradient-to-r from-indigo-400 to-purple-400 rounded-3xl"/>
 
-            {/* card */}
-            <div className="relative p-10 border border-gray-100 shadow-xl backdrop-blur-md rounded-3xl bg-white/90">
+            {/* 🔴 glow border */}
+            <div className="absolute inset-0 transition opacity-0 group-hover:opacity-100 blur-2xl bg-gradient-to-r from-red-700 to-red-500 rounded-3xl" />
 
-              {/* number */}
-              <h3 className="mb-3 text-5xl font-extrabold text-transparent md:text-6xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text">
+            {/* ⚫ card */}
+            <div className="relative p-10 border shadow-2xl border-white/10 rounded-3xl bg-black/70 backdrop-blur-md">
+
+              {/* 🔴 number */}
+              <h3 className="mb-3 text-5xl font-extrabold text-transparent bg-red-600 md:text-6xl bg-clip-text">
                 {trigger && (
                   <CountUp
                     end={item.number}
@@ -65,22 +65,23 @@ const StatsSection = () => {
                 )}
               </h3>
 
-              {/* label */}
-              <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">
+              {/* ⚪ label */}
+              <p className="text-sm font-semibold tracking-widest text-white uppercase">
                 {item.label}
               </p>
 
-              {/* underline animation */}
+              {/* 🔴 underline */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
                 transition={{ delay: 0.7 + index * 0.15, duration: 0.7 }}
-                className="h-[3px] w-14 mx-auto mt-6 origin-left rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                className="h-[3px] w-14 mx-auto mt-6 origin-left rounded-full bg-gradient-to-r from-red-600 to-white"
               />
 
             </div>
           </motion.div>
         ))}
+
       </div>
     </section>
   );

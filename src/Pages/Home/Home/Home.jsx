@@ -14,13 +14,13 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Faces Solutions</title>
+        <title>Zami Studio</title>
       </Helmet>
 
       <Sliders />
 
       {/* Main Container */}
-      <div className="py-2 md:py-6 lg:py-8">
+      <div className="">
         <StatsSection />
         <ServicesCategories />
         <PricePlans />

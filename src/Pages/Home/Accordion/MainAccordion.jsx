@@ -1,21 +1,21 @@
-import React from 'react';
-import AccordionHeader from './AccordionHeader';
-import Accordion from './Accordion';
+import React from "react";
+import AccordionHeader from "./AccordionHeader";
+import Accordion from "./Accordion";
 
 const MainAccordion = () => {
   return (
-    <section className="relative w-full px-6 py-12 overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-green-100 rounded-3xl">
-      
-      {/* Decorative angled background */}
-      <div 
-        className="absolute top-0 right-0  h-[600px] bg-gradient-to-tr from-green-200 to-green-400 rounded-full opacity-30 rotate-45 -z-10"
-      ></div>
+    <section className="relative w-full py-20 overflow-hidden bg-black">
 
-      {/* Content */}
-      <div className="relative z-10 space-y-12">
+      {/* red glow background */}
+      <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-red-600/20 blur-[140px] rounded-full"></div>
+      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-red-500/10 blur-[140px] rounded-full"></div>
+
+      {/* content */}
+      <div className="relative z-10 space-y-14">
         <AccordionHeader />
         <Accordion />
       </div>
+
     </section>
   );
 };
