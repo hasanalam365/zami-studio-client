@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import useAuth from "../../Hooks/useAuth";
+// import useAuth from "../../Hooks/useAuth";
+import { Typewriter } from "react-simple-typewriter";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const { user, signOutUser } = useAuth();
+  // const { user, signOutUser } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -16,21 +17,18 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLogout = async () => {
-    await signOutUser();
-  };
+  // const handleLogout = async () => {
+  //   await signOutUser();
+  // };
 
-  // 🔴 Active (Red Gradient)
   const activeClass =
     "bg-gradient-to-r from-[#7f1d1d] to-[#dc2626] text-white px-4 py-2 rounded-lg shadow-md transition-all duration-300";
 
-  // ⚪ Normal (White text)
   const normalClass =
     "px-4 py-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300";
 
   return (
     <>
-      {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 w-full border-b backdrop-blur-md transition-all duration-300
         ${isOpen ? "z-40 opacity-0 pointer-events-none" : "z-50 opacity-100"}
@@ -49,9 +47,25 @@ const Navbar = () => {
               alt="Zami Studio Logo"
               className="object-contain w-10 h-10"
             />
-            <h4 className="text-2xl font-bold md:text-3xl">
-              <span className="text-white">ZAMI</span>{" "}
-              <span className="text-red-600">STUDIO</span>
+
+            <h4 className="flex items-center gap-2 text-2xl font-bold md:text-3xl">
+
+              <span className="text-white">
+               ZAMI
+              </span>
+              <span className="text-red-600">
+               <Typewriter
+                  words={["STUDIO"]}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={120}
+                  deleteSpeed={80}
+                  delaySpeed={2000}
+                />
+              </span>
+
+              
             </h4>
           </Link>
 
@@ -72,25 +86,6 @@ const Navbar = () => {
             <NavLink to="/about" className={({ isActive }) => (isActive ? activeClass : normalClass)}>
               About
             </NavLink>
-
-            {!user ? (
-              <NavLink to="/login" className={({ isActive }) => (isActive ? activeClass : normalClass)}>
-                Login
-              </NavLink>
-            ) : (
-              <>
-                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? activeClass : normalClass)}>
-                  Dashboard
-                </NavLink>
-
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 font-bold text-red-500 transition hover:text-red-600"
-                >
-                  Logout
-                </button>
-              </>
-            )}
           </div>
 
           {/* MOBILE MENU BUTTON */}
@@ -115,18 +110,13 @@ const Navbar = () => {
               className="fixed top-0 right-0 z-[60] h-full w-[80%] sm:w-[65%]
               bg-white text-black shadow-2xl p-6 flex flex-col gap-6"
             >
-              {/* HEADER */}
               <div className="flex items-center justify-between pb-4 border-b">
                 <h2 className="text-xl font-bold">Menu</h2>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-2xl"
-                >
+                <button onClick={() => setIsOpen(false)} className="text-2xl">
                   <IoClose />
                 </button>
               </div>
 
-              {/* LINKS */}
               {["/", "/services", "/contact-us", "/about"].map((path, i) => (
                 <NavLink
                   key={i}
@@ -144,42 +134,8 @@ const Navbar = () => {
                   {["Home", "Services", "Contact", "About"][i]}
                 </NavLink>
               ))}
-
-              {!user ? (
-                <NavLink
-                  to="/login"
-                  onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `w-full px-4 py-3 rounded-lg text-lg font-semibold transition-all duration-300
-                    ${
-                      isActive
-                        ? "bg-gradient-to-r from-[#7f1d1d] to-[#dc2626] text-white shadow-md"
-                        : "hover:bg-gray-100"
-                    }`
-                  }
-                >
-                  Login
-                </NavLink>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  <NavLink
-                    to="/dashboard"
-                    className="px-4 py-2 font-semibold text-red-600 rounded-lg hover:bg-gray-100"
-                  >
-                    Dashboard
-                  </NavLink>
-
-                  <button
-                    onClick={handleLogout}
-                    className="px-4 py-2 font-bold text-left text-red-500 hover:text-red-600"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
             </motion.div>
 
-            {/* OVERLAY */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.4 }}

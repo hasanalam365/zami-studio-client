@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import { Code, BarChart3, Globe, Smartphone } from "lucide-react";
 import Testimonial from "../Home/Testimonial/Testimonial";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   return (
     <div className="relative w-full overflow-hidden text-white bg-black">
+       <Helmet>
+              <title>About | Zami Studio</title>
+            </Helmet>
 
       {/* RED GLOW */}
       <div className="absolute -top-32 -left-32 w-[420px] h-[420px] rounded-full bg-red-600/20 blur-3xl" />

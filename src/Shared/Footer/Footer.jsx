@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
 
 const Footer = () => {
   return (
@@ -32,12 +33,25 @@ const Footer = () => {
               />
             </div>
 
-            <h2 className="text-3xl font-extrabold text-white">
-              Zami{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
-                Studio
-              </span>
-            </h2>
+             <h4 className="flex items-center gap-2 text-2xl font-bold md:text-3xl">
+            
+                          <span className="text-white">
+                           ZAMI
+                          </span>
+                          <span className="text-red-600">
+                           <Typewriter
+                              words={["STUDIO"]}
+                              loop={0}
+                              cursor
+                              cursorStyle="|"
+                              typeSpeed={120}
+                              deleteSpeed={80}
+                              delaySpeed={2000}
+                            />
+                          </span>
+            
+                          
+                        </h4>
           </motion.div>
 
           <p className="max-w-xs text-sm leading-relaxed text-white/60">

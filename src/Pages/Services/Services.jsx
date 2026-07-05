@@ -3,7 +3,6 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Sparkles } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-// import WorkProcess from "../Home/WorkProcess/WorkProcess";
 
 const servicesData = [
   {
@@ -160,34 +159,38 @@ and increase organic visibility.
 
 const Services = () => {
   return (
-    <div className="overflow-hidden bg-gradient-to-br from-[#e9ffe1] via-[#f4f8ff] to-[#ffffff]">
-       <Helmet>
-              <title>Services | Faces Solutions</title>
-            </Helmet>
-      {/* ===== HERO ===== */}
+    <div className="overflow-hidden text-white bg-black">
+
+      <Helmet>
+        <title>Services | Zami Studio</title>
+      </Helmet>
+
+      {/* HERO */}
       <section className="relative px-6 py-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-full">
+          <span className="inline-flex items-center gap-2 px-4 py-1 text-sm font-semibold text-red-400 border rounded-full bg-red-500/10 border-red-500/20">
             <Sparkles size={16} /> Premium Digital Agency
           </span>
 
-          <h1 className="mt-6 text-4xl font-extrabold text-gray-900 md:text-6xl">
+          <h1 className="mt-6 text-4xl font-extrabold md:text-6xl">
             Exceptional Services <br />
-            <span className="text-green-600">That Elevate Your Brand</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
+              That Elevate Your Brand
+            </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
+          <p className="max-w-2xl mx-auto mt-6 text-lg text-white/70">
             We create high-impact digital services designed for growth,
             performance, and long-term success.
           </p>
         </motion.div>
       </section>
 
-      {/* ===== SERVICES (MODERN LAYOUT) ===== */}
+      {/* SERVICES */}
       <section className="px-6 pb-32 space-y-28 md:px-20">
         {servicesData.map((service, i) => {
           const reverse = i % 2 !== 0;
@@ -203,42 +206,35 @@ const Services = () => {
                 reverse ? "lg:flex-row-reverse" : "lg:flex-row"
               }`}
             >
-              {/* IMAGE */}
               <motion.img
                 whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.5 }}
                 src={service.imgUrl}
                 alt={service.title}
-                className="w-full lg:w-1/2 h-[420px] object-cover rounded-[2.5rem] shadow-2xl"
+                className="w-full lg:w-1/2 h-[420px] object-cover rounded-[2.5rem] shadow-2xl border border-white/10"
               />
 
-              {/* CONTENT */}
               <div className="w-full lg:w-1/2">
-                <span className="px-4 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-full">
+                <span className="px-4 py-1 text-sm font-semibold text-red-400 border rounded-full bg-red-500/10 border-red-500/20">
                   {service.serviceCategories}
                 </span>
 
-                <h2 className="mt-6 text-3xl font-extrabold text-gray-900 md:text-4xl">
+                <h2 className="mt-6 text-3xl font-extrabold md:text-4xl">
                   {service.title}
                 </h2>
 
-                <p className="mt-5 text-lg leading-relaxed text-gray-600 whitespace-pre-line">
+                <p className="mt-5 text-lg leading-relaxed whitespace-pre-line text-white/70">
                   {service.description}
                 </p>
 
                 <div className="flex items-center gap-3 mt-6">
-                  <FaStar className="text-yellow-500" />
-                  <span className="font-medium text-gray-700">
+                  <FaStar className="text-red-500" />
+                  <span className="text-white/70">
                     {service.rating} Rating • {service.userReviews} Reviews
                   </span>
                 </div>
 
-                <Link
-                  to={`/service-details/${service.id}`}
-                  state={service}
-                  className="inline-block mt-8"
-                >
-                  <button className="px-8 py-3 text-sm font-semibold text-white transition-all rounded-full shadow-xl bg-gradient-to-r from-green-500 to-emerald-400 hover:scale-105">
+                <Link to={`/service-details/${service.id}`} state={service}>
+                  <button className="px-8 py-3 mt-8 text-sm font-semibold text-white transition bg-red-600 rounded-full hover:bg-red-700 hover:scale-105">
                     Explore Service →
                   </button>
                 </Link>
@@ -247,9 +243,6 @@ const Services = () => {
           );
         })}
       </section>
-
-      {/* ===== WORK PROCESS ===== */}
-      {/* <WorkProcess /> */}
     </div>
   );
 };

@@ -8,7 +8,7 @@ const WhatsAppWidget = () => {
   const popupRef = useRef(null);
   const audioRef = useRef(null);
 
-  const whatsappNumber = "447308888874";
+  const whatsappNumber = "8801645782626";
 
   const welcomeMessage =
     "Hi 👋 Welcome to Zami Studio.\n\nHow can we assist you today? Our team is ready to help.";

@@ -5,16 +5,11 @@ import Testimonial from "../../Home/Testimonial/Testimonial";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
 
 export default function ServiceDetails() {
-  const { state } = useLocation();
-  const service = state;
+  const { state: service } = useLocation();
 
   return (
     <div className="overflow-hidden text-white bg-black">
@@ -28,7 +23,7 @@ export default function ServiceDetails() {
       >
         <div className="max-w-6xl mx-auto">
 
-          <div className="relative overflow-hidden border shadow-2xl rounded-3xl border-white/10">
+          <div className="relative overflow-hidden border shadow-2xl border-white/10 rounded-3xl">
 
             <img
               src={service.imgUrl}
@@ -36,7 +31,7 @@ export default function ServiceDetails() {
               className="object-cover w-full h-[460px]"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
 
             <div className="absolute text-white bottom-8 left-8 right-8">
               <h1 className="text-4xl font-extrabold md:text-5xl">
@@ -45,7 +40,7 @@ export default function ServiceDetails() {
 
               <div className="flex items-center gap-3 mt-4 text-red-500">
                 <FaStar />
-                <span className="text-white/80">
+                <span className="text-white/70">
                   {service.rating} ({service.userReviews})
                 </span>
               </div>
@@ -59,7 +54,6 @@ export default function ServiceDetails() {
       <section className="px-4 pb-28">
         <div className="grid max-w-6xl gap-10 mx-auto md:grid-cols-2 lg:grid-cols-3">
 
-          {/* LEFT */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -71,7 +65,7 @@ export default function ServiceDetails() {
               Service Overview
             </h2>
 
-            <p className="leading-relaxed text-white/70">
+            <p className="leading-relaxed whitespace-pre-line text-white/70">
               {service.description}
             </p>
 
@@ -87,7 +81,7 @@ export default function ServiceDetails() {
                   className="flex items-center gap-3 p-4 border bg-black/60 border-white/10 rounded-xl"
                 >
                   <FaCheckCircle className="text-red-500" />
-                  <span className="text-white/80">{item}</span>
+                  <span className="text-white/70">{item}</span>
                 </div>
               ))}
             </div>
@@ -96,19 +90,13 @@ export default function ServiceDetails() {
               <h4 className="font-semibold text-red-500">
                 Service Category
               </h4>
-              <p className="mt-1 text-white/80">
+              <p className="mt-1 text-white/70">
                 {service.serviceCategories}
               </p>
             </div>
           </motion.div>
 
-          {/* RIGHT */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="p-8 border bg-white/5 border-white/10 rounded-3xl"
-          >
+          <div className="p-8 border bg-white/5 border-white/10 rounded-3xl">
             <h3 className="text-xl font-bold text-white">
               Premium Digital Agency
             </h3>
@@ -119,13 +107,13 @@ export default function ServiceDetails() {
 
             <button
               onClick={() =>
-                window.open("https://wa.me/+447308888874", "_blank")
+                window.open("https://wa.me/+8801645782626", "_blank")
               }
-              className="w-full py-4 mt-8 font-bold transition rounded-2xl bg-gradient-to-r from-red-600 to-black hover:scale-105"
+              className="w-full py-4 mt-8 font-bold transition bg-red-600 rounded-2xl hover:bg-red-700 hover:scale-105"
             >
               Contact Now
             </button>
-          </motion.div>
+          </div>
 
         </div>
       </section>
