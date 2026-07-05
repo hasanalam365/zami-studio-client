@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto Slab', serif;
+}
+
+.footer-link {
+  @apply block text-sm text-gray-400 transition-all duration-300 hover:text-[#5fcf3a] hover:translate-x-1;
+}
+
+
+/* WhatsApp popup animation and small helpers */
+@keyframes whatsappPopup {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-whatsapp-popup {
+  animation: whatsappPopup 220ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* custom cursor class from your cursor.css probably uses position fixed; ensure pointer-events none */
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 60;
+}
+
+/* small responsive fix so popup doesn't overflow on tiny screens */
+@media (max-width: 420px) {
+  .fixed.right-6 { right: 12px; }
+  .fixed.bottom-20 { bottom: 80px; } /* pushes up a bit if mobile nav exists */
+}
+
+html {
+  scroll-behavior: smooth;
+}

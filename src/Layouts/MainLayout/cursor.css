@@ -1,0 +1,31 @@
+.cursor-bubble {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  border-radius: 50%;
+
+  /* Green gradient based on your uploaded color */
+  background: radial-gradient(circle, #baffc9, #6dfc8b);
+
+  /* Stronger glow */
+  box-shadow: 
+    0 0 8px #8affad,
+    0 0 16px #5aff8a,
+    0 0 24px #3aff76;
+
+  transform: translate(-50%, -50%);
+  animation: fadeOut 0.55s linear forwards;
+  z-index: 99999;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+}
