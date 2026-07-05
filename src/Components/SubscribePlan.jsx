@@ -15,29 +15,29 @@ export default function SubscribePlan() {
 
   const planDetails = {
     Lite: {
-      color: "green",
+      color: "red",
       features: ["2–4 Page Website", "Free Domain", "Hosting 5GB", "SSL Certificate"],
       description:
-        "Perfect for starters and small brands. Clean and responsive website with essentials included.",
+        "Perfect for starters who want a clean, fast and modern online presence.",
     },
     Professional: {
-      color: "blue",
-      features: ["5–8 Pages", "Domain & Hosting", "SSL", "Email Accounts"],
+      color: "red",
+      features: ["5–8 Pages", "Domain & Hosting", "SSL Security", "Email Accounts"],
       description:
-        "Take your online presence to the next level with a professionally crafted multi-page website.",
+        "Ideal for growing brands needing a strong, professional digital identity.",
     },
     Enterprise: {
-      color: "orange",
+      color: "red",
       features: ["10+ Pages", "Custom Design", "SEO Optimization", "Priority Support"],
       description:
-        "Premium large-scale website with SEO, custom design, unlimited revisions & top-level support.",
+        "Full-scale enterprise solution with premium performance and scalability.",
     },
   };
 
-  const data = planDetails[plan] || {};
+  const data = planDetails[plan] || planDetails.Lite;
 
   return (
-    <div className="flex flex-col items-center min-h-screen px-4 py-10 bg-gradient-to-br from-gray-100 to-gray-200">
+    <div className="flex items-center justify-center min-h-screen px-4 py-12 text-white bg-black">
       <Helmet>
         <title>Subscribe | {plan}</title>
       </Helmet>
@@ -46,55 +46,63 @@ export default function SubscribePlan() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-3xl p-8 bg-white border border-gray-200 shadow-2xl rounded-2xl"
+        className="w-full max-w-4xl p-8 border shadow-2xl border-red-600/30 bg-black/80 backdrop-blur-xl rounded-3xl"
       >
-        {/* Header */}
-        <div className="mb-6 text-center">
-          <motion.h1
+
+        {/* HEADER */}
+        <div className="mb-10 text-center">
+          <motion.div
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 0.4 }}
             className="flex items-center justify-center gap-2 text-4xl font-extrabold"
           >
-            <Star className={`text-${data.color}-600`} size={34} />
+            <Star className="text-red-500" size={34} />
             {plan} Plan
-          </motion.h1>
-          <p className="mt-2 text-lg text-gray-700">Monthly Charge:</p>
-          <p className={`text-4xl font-bold text-${data.color}-600`}>£{price}</p>
+          </motion.div>
+
+          <p className="mt-3 text-gray-400">Monthly Subscription</p>
+
+          <p className="mt-2 text-5xl font-bold text-red-500">
+            £{price}
+          </p>
         </div>
 
-        {/* Plan Details Card */}
+        {/* PLAN CARD */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className={`p-6 rounded-xl shadow-inner bg-${data.color}-50 border-t-4 border-${data.color}-500 mb-8`}
+          className="p-6 mb-10 border border-red-600/30 rounded-2xl bg-white/5"
         >
-          <p className="mb-4 text-lg text-gray-700">{data.description}</p>
+          <p className="mb-6 text-gray-300">{data.description}</p>
 
-          <ul className="space-y-2">
-            {data.features?.map((f, idx) => (
-              <li key={idx} className="flex items-center gap-3 text-base text-gray-700">
-                <Check className={`text-${data.color}-600`} /> {f}
-              </li>
+          <div className="grid gap-3">
+            {data.features.map((f, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 p-3 border border-white/10 rounded-xl bg-black/40"
+              >
+                <Check className="text-red-500" />
+                <span className="text-gray-200">{f}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </motion.div>
 
-        {/* Payment Section */}
+        {/* PAYMENT SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="p-6 border shadow-md bg-gray-50 rounded-xl"
+          className="p-6 border border-red-600/30 bg-black/60 rounded-2xl"
         >
           <div className="flex items-center gap-3 mb-4">
-            <CreditCard className="text-green-600" size={28} />
+            <CreditCard className="text-red-500" size={28} />
             <h2 className="text-2xl font-bold">Secure Payment</h2>
           </div>
 
-          <p className="mb-4 text-gray-600">
-            Complete your subscription securely using your card details.
+          <p className="mb-5 text-gray-400">
+            Complete your subscription securely using Stripe payment system.
           </p>
 
           <Elements stripe={stripePromise}>

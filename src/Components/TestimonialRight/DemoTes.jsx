@@ -50,36 +50,36 @@ const DemoTes = () => {
       className="w-full h-full"
     >
       {testimonials.map((t) => (
-        <SwiperSlide key={t.id} className="h-full">
+        <SwiperSlide key={t.id}>
           <motion.div
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -8 }}
             transition={{ duration: 0.4 }}
-            className="relative w-full h-full p-6 bg-white border shadow-lg rounded-xl"
+            className="relative p-6 text-white border shadow-2xl rounded-2xl bg-black/80 border-white/10 backdrop-blur-xl"
           >
-            <LiaQuoteLeftSolid className="absolute text-5xl text-green-500/20 top-6 right-6" />
+            {/* Quote icon */}
+            <LiaQuoteLeftSolid className="absolute text-6xl text-red-500/20 top-5 right-5" />
 
+            {/* Top user */}
             <div className="flex items-center gap-4">
               <img
                 src={t.photo}
                 alt={t.name}
-                className="object-cover rounded-full w-14 h-14 ring-4 ring-green-100"
+                className="object-cover rounded-full w-14 h-14 ring-2 ring-red-500/40"
               />
 
               <div>
-                <h4 className="text-lg font-bold text-gray-900">
-                  {t.name}
-                </h4>
-                <p className="text-sm text-gray-500">
-                  {t.designation}
-                </p>
+                <h4 className="text-lg font-bold text-white">{t.name}</h4>
+                <p className="text-sm text-white/60">{t.designation}</p>
               </div>
             </div>
 
-            <p className="mt-5 leading-relaxed text-gray-700">
+            {/* text */}
+            <p className="mt-5 leading-relaxed text-white/70">
               {t.text}
             </p>
 
-            <span className="inline-block mt-6 text-sm font-semibold text-green-600">
+            {/* tag */}
+            <span className="inline-block px-3 py-1 mt-6 text-xs font-semibold text-red-400 border rounded-full border-red-500/30 bg-red-500/10">
               {t.title}
             </span>
           </motion.div>

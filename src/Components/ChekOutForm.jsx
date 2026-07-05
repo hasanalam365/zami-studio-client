@@ -14,42 +14,22 @@ const CheckOutForm = ({ plan, price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Send actual price (NOT multiplied)
   const amount = Number(price);
 
-  // Create Payment Intent on load
   useEffect(() => {
     const createPaymentIntent = async () => {
-      try {
-        const res = await axiosPublic.post(
-          "/create-payment-intent",
-          { amount }
-        );
-        setClientSecret(res.data.clientSecret);
-      } catch (err) {
-        console.log(err);
-        setError("Failed to initialize payment.");
-      }
+      const res = await axiosPublic.post("/create-payment-intent", { amount });
+      setClientSecret(res.data.clientSecret);
     };
     createPaymentIntent();
-  }, [amount, axiosPublic]);
+  }, [amount]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!stripe || !elements || !clientSecret) return;
-
     setLoading(true);
-    setError("");
 
     const card = elements.getElement(CardElement);
-    if (!card) {
-      setError("Card not loaded. Please try again.");
-      setLoading(false);
-      return;
-    }
 
-    // 1. Create Payment Method
     const { error: pmError } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -61,14 +41,13 @@ const CheckOutForm = ({ plan, price }) => {
       return;
     }
 
-    // 2. Confirm payment
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card,
           billing_details: {
-            email: user?.email || "anonymous",
-            name: user?.displayName || "anonymous",
+            email: user?.email,
+            name: user?.displayName,
           },
         },
       });
@@ -79,13 +58,9 @@ const CheckOutForm = ({ plan, price }) => {
       return;
     }
 
-    // 3. Success
     Swal.fire({
-      title: `Subscribed to ${plan}`,
-      html: `
-        Amount Charged: <b>$${price}</b><br/>
-        Transaction ID: <span style="color:#0A66C2">${paymentIntent.id}</span>
-      `,
+      title: "Payment Successful",
+      html: `Plan: <b>${plan}</b><br/>ID: <span style="color:red">${paymentIntent.id}</span>`,
       icon: "success",
     });
 
@@ -93,30 +68,33 @@ const CheckOutForm = ({ plan, price }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-6">
-      <div className="p-4 bg-gray-200 rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-4">
+
+      <div className="p-5 bg-black border rounded-xl border-red-500/30">
         <CardElement
           options={{
             style: {
               base: {
+                color: "#fff",
                 fontSize: "16px",
-                color: "#424770",
-                "::placeholder": { color: "#aab7c4" },
+                "::placeholder": { color: "#aaa" },
               },
-              invalid: { color: "#FF0000" },
+              invalid: { color: "#ff4d4d" },
             },
           }}
         />
       </div>
 
       <button
-        className="w-full py-3 mt-4 font-bold text-white bg-green-600 rounded-lg"
         disabled={!stripe || loading}
+        className="w-full py-3 font-bold text-white transition rounded-xl bg-gradient-to-r from-red-600 to-black hover:opacity-90"
       >
-        {loading ? "Processing..." : `Pay $${price}`}
+        {loading ? "Processing..." : `Pay £${price}`}
       </button>
 
-      <p className="mt-2 text-center text-red-600">{error}</p>
+      {error && (
+        <p className="text-sm text-center text-red-500">{error}</p>
+      )}
     </form>
   );
 };

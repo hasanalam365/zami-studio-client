@@ -87,14 +87,14 @@ export const router = createBrowserRouter([
                 path: '/login',
                 element: <Login></Login>
             },
-            {
-                path: '/blog',
-                element: <BlogPage></BlogPage>
-            },
-            {
-                path: '/blog/:id',
-                element: <BlogDetails></BlogDetails>
-            },
+            // {
+            //     path: '/blogs',
+            //     element: <BlogPage></BlogPage>
+            // },
+            // {
+            //     path: '/blog/:id',
+            //     element: <BlogDetails></BlogDetails>
+            // },
             {
                 path: '/registerUser',
                 element: <Register></Register>

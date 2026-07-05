@@ -1,191 +1,104 @@
 import { useParams, Link } from "react-router-dom";
-import projectsData from "./projectsData";
 import { ExternalLink, Github, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
 const WorkDetails = () => {
   const { id } = useParams();
 
-  const project = projectsData.find((item) => item.id === id);
-
-  if (!project) {
-    return (
-      <div className="flex items-center justify-center min-h-screen px-4 bg-white">
-        <div className="text-center">
-          <h2 className="mb-3 text-3xl font-bold text-gray-900">
-            Project Not Found
-          </h2>
-          <p className="mb-6 text-gray-600">
-            Sorry, the project you are looking for does not exist.
-          </p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 px-5 py-3 text-white rounded-xl bg-[#5fcf3a] hover:bg-[#4fba2f] transition"
-          >
-            <ArrowLeft size={18} />
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <section className="bg-white">
-      {/* Banner */}
-      <div className="relative w-full h-[60vh] overflow-hidden">
+    <div className="min-h-screen text-white bg-black">
+
+      {/* HERO */}
+      <div className="relative h-[60vh] overflow-hidden">
         <img
-          src={project.bannerImage}
-          alt={project.title}
+          src="https://i.ibb.co.com/mVMHvfC0/arabian-essence-sc.png"
           className="object-cover w-full h-full"
         />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70" />
 
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-11/12 mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-3xl text-white"
-            >
-              <p className="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-[#5fcf3a]/90">
-                {project.category}
-              </p>
-              <h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
-                {project.title}
-              </h1>
-              <p className="text-lg leading-8 text-gray-200">
-                {project.shortDescription}
-              </p>
-            </motion.div>
-          </div>
+        <div className="absolute bottom-10 left-10">
+          <p className="mb-2 text-sm text-red-400">Project Details</p>
+          <h1 className="text-4xl font-bold md:text-6xl">
+            Premium <span className="text-red-500">Project</span>
+          </h1>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="w-11/12 py-16 mx-auto max-w-7xl">
-        <div className="grid gap-10 lg:grid-cols-3">
-          {/* Left Content */}
-          <div className="lg:col-span-2">
-            <div className="mb-10">
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">
-                Project Overview
-              </h2>
-              <p className="leading-8 text-gray-600">
-                {project.fullDescription}
-              </p>
-            </div>
+      {/* CONTENT */}
+      <div className="grid w-11/12 gap-10 py-16 mx-auto max-w-7xl lg:grid-cols-3">
 
-            <div className="mb-10">
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">
-                Key Features
-              </h2>
-              <div className="grid gap-4 md:grid-cols-2">
-                {project.features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="p-4 border border-gray-100 bg-gray-50 rounded-2xl"
-                  >
-                    <p className="font-medium text-gray-700">{feature}</p>
-                  </div>
+        {/* LEFT */}
+        <div className="space-y-10 lg:col-span-2">
+
+          <div className="p-6 border rounded-3xl bg-white/5 border-white/10">
+            <h2 className="mb-4 text-2xl font-bold text-red-400">
+              Project Overview
+            </h2>
+            <p className="leading-relaxed text-white/70">
+              High quality modern system built with performance, UX and scalability in mind.
+            </p>
+          </div>
+
+          <div className="p-6 border rounded-3xl bg-white/5 border-white/10">
+            <h2 className="mb-4 text-2xl font-bold text-red-400">
+              Key Features
+            </h2>
+
+            <div className="grid gap-3 md:grid-cols-2 text-white/70">
+              {["Responsive UI", "Fast Performance", "SEO Ready", "Secure System"].map((f, i) => (
+                <div key={i} className="p-3 border bg-black/40 border-white/10 rounded-xl">
+                  {f}
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* RIGHT */}
+        <div className="p-6 border rounded-3xl bg-white/5 border-white/10 h-fit">
+
+          <h3 className="mb-6 text-xl font-bold text-red-400">
+            Project Info
+          </h3>
+
+          <div className="space-y-4 text-white/70">
+
+            <p><span className="text-white">Client:</span> Premium Brand</p>
+            <p><span className="text-white">Duration:</span> 2-3 Weeks</p>
+
+            <div>
+              <p className="mb-2 text-white">Tech Stack</p>
+              <div className="flex flex-wrap gap-2">
+                {["React", "Tailwind", "Node", "MongoDB"].map((t, i) => (
+                  <span key={i} className="px-2 py-1 text-xs border rounded-full bg-red-600/20 border-red-500/30">
+                    {t}
+                  </span>
                 ))}
               </div>
             </div>
 
-            <div className="mb-10">
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">
-                Challenges
-              </h2>
-              <p className="leading-8 text-gray-600">{project.challenges}</p>
-            </div>
-
-            <div>
-              <h2 className="mb-4 text-3xl font-bold text-gray-900">
-                Solution
-              </h2>
-              <p className="leading-8 text-gray-600">{project.solution}</p>
-            </div>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="p-6 border border-gray-100 shadow-sm h-fit bg-gray-50 rounded-3xl">
-            <h3 className="mb-6 text-2xl font-bold text-gray-900">
-              Project Info
-            </h3>
+          <a
+            href="#"
+            className="block py-3 mt-8 text-center transition rounded-xl bg-gradient-to-r from-red-600 to-black hover:scale-105"
+          >
+            Live Preview <ExternalLink className="inline ml-2" size={16} />
+          </a>
 
-            <div className="space-y-5">
-              <div>
-                <p className="mb-1 text-sm text-gray-500">Client</p>
-                <h4 className="font-semibold text-gray-800">{project.client}</h4>
-              </div>
+          <Link
+            to="/"
+            className="block mt-3 text-center text-white/60 hover:text-red-400"
+          >
+            <ArrowLeft className="inline mr-1" size={16} />
+            Back
+          </Link>
 
-              <div>
-                <p className="mb-1 text-sm text-gray-500">Duration</p>
-                <h4 className="font-semibold text-gray-800">
-                  {project.duration}
-                </h4>
-              </div>
-
-              <div>
-                <p className="mb-2 text-sm text-gray-500">Technologies & Tools</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 text-sm font-medium text-gray-700 bg-white rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4 space-y-3">
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-full gap-2 px-4 py-3 font-semibold text-white transition rounded-xl bg-[#5fcf3a] hover:bg-[#4fba2f]"
-                >
-                  Live Preview <ExternalLink size={18} />
-                </a>
-
-                {project.githubClient && (
-                  <a
-                    href={project.githubClient}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full gap-2 px-4 py-3 font-semibold text-gray-800 transition bg-white border border-gray-200 rounded-xl hover:border-[#5fcf3a] hover:text-[#5fcf3a]"
-                  >
-                    Client Code <Github size={18} />
-                  </a>
-                )}
-
-                {project.githubServer && (
-                  <a
-                    href={project.githubServer}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full gap-2 px-4 py-3 font-semibold text-gray-800 transition bg-white border border-gray-200 rounded-xl hover:border-[#5fcf3a] hover:text-[#5fcf3a]"
-                  >
-                    Server Code <Github size={18} />
-                  </a>
-                )}
-
-                <Link
-                  to="/"
-                  className="flex items-center justify-center w-full gap-2 px-4 py-3 font-semibold text-gray-800 transition bg-white border border-gray-200 rounded-xl hover:border-[#5fcf3a] hover:text-[#5fcf3a]"
-                >
-                  <ArrowLeft size={18} />
-                  Back to Home
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
+
       </div>
-    </section>
+    </div>
   );
 };
 
