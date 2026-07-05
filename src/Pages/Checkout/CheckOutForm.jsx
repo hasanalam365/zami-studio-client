@@ -171,7 +171,7 @@ const CheckOutForm = ({ plan, price }) => {
 
       <button
         disabled={loading}
-        className="w-full py-4 text-lg font-bold text-black transition rounded-xl bg-gradient-to-r from-green-400 to-blue-400"
+        className="w-full py-4 text-lg font-bold text-white transition bg-red-600 rounded-xl"
       >
         {loading ? "Processing..." : `Pay £${price}`}
       </button>

@@ -21,88 +21,90 @@ const DashboardHome = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <span className="loading loading-spinner text-[#5fcf3a]"></span>
+      <div className="flex items-center justify-center h-[60vh] bg-black">
+        <span className="text-red-500 loading loading-spinner"></span>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="mt-10 text-center text-red-500">
+      <div className="flex items-center justify-center min-h-screen text-red-500 bg-black">
         Failed to load dashboard data
       </div>
     );
   }
 
   return (
-    <div className="relative min-h-screen p-6 overflow-hidden bg-gradient-to-br from-green-50 via-white to-green-100">
+    <div className="relative min-h-screen p-6 overflow-hidden text-white bg-black">
 
       <Helmet>
         <title>Dashboard Home</title>
       </Helmet>
 
-      {/* Soft Glow Background */}
-      <div className="absolute w-80 h-80 bg-[#5fcf3a] opacity-10 rounded-full blur-3xl -top-20 -left-20 animate-pulse"></div>
-      <div className="absolute w-80 h-80 bg-[#a0ec86] opacity-10 rounded-full blur-3xl bottom-0 right-0 animate-pulse"></div>
+      {/* 🔴 Glow Effects */}
+      <div className="absolute bg-red-600 rounded-full w-96 h-96 blur-3xl opacity-20 -top-20 -left-20 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 bg-white rounded-full w-96 h-96 blur-3xl opacity-5 animate-pulse"></div>
 
-      {/* Header */}
+      {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
         className="relative z-10 mb-10"
       >
-        <h1 className="text-4xl font-extrabold text-transparent bg-gradient-to-r from-[#5fcf3a] to-[#2f9e1f] bg-clip-text">
+        <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
           Dashboard Overview
         </h1>
-        <p className="mt-3 text-gray-600">
-          Monitor your Sales Funnels performance in real-time.
+        <p className="mt-3 text-gray-400">
+          Monitor your system performance in real-time.
         </p>
       </motion.div>
 
-      {/* Total Card */}
+      {/* TOTAL CARD */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 p-8 mb-10 text-white shadow-xl rounded-3xl bg-gradient-to-r from-[#5fcf3a] to-[#a0ec86]"
+        className="relative z-10 p-8 mb-10 border border-red-500/30 rounded-3xl bg-red-500/10 backdrop-blur-xl"
       >
-        <h2 className="text-lg font-medium opacity-90">
+        <h2 className="text-lg text-gray-300">
           Total Activities
         </h2>
-        <p className="mt-3 text-5xl font-bold">
+
+        <p className="mt-3 text-5xl font-extrabold text-red-500">
           {totalCount}
         </p>
       </motion.div>
 
-      {/* Stats Cards */}
-      <div className="relative z-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {/* STATS GRID */}
+      <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
         {data.map((item, index) => (
           <motion.div
             key={item._id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            whileHover={{ scale: 1.06 }}
-            className="relative p-6 transition-all duration-500 bg-white border shadow-lg rounded-3xl hover:shadow-2xl"
+            transition={{ delay: index * 0.1 }}
+            whileHover={{ scale: 1.05 }}
+            className="relative p-6 transition duration-300 border border-white/10 rounded-3xl bg-white/5 hover:border-red-500/50"
           >
-            {/* Hover Glow Effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#5fcf3a] to-[#a0ec86] opacity-0 hover:opacity-10 transition duration-500"></div>
 
-            <h2 className="text-lg font-semibold text-gray-700">
+            {/* Hover Glow */}
+            <div className="absolute inset-0 transition-opacity duration-300 opacity-0 rounded-3xl bg-gradient-to-r from-red-600/20 to-white/10 hover:opacity-100"></div>
+
+            <h2 className="relative text-lg font-semibold text-white">
               {item.category}
             </h2>
 
-            <p className="mt-5 text-4xl font-extrabold text-transparent bg-gradient-to-r from-[#5fcf3a] to-[#2f9e1f] bg-clip-text">
+            <p className="relative mt-5 text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white">
               {item.count}
             </p>
 
-            <p className="mt-3 text-sm text-gray-400">
+            <p className="relative mt-3 text-sm text-gray-400">
               {new Date(item.createdAt).toLocaleDateString()}
             </p>
           </motion.div>
         ))}
+
       </div>
     </div>
   );
