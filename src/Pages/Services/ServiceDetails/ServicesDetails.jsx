@@ -107,7 +107,7 @@ export default function ServiceDetails() {
 
             <button
               onClick={() =>
-                window.open("https://wa.me/+8801645782626", "_blank")
+                window.open("https://wa.me/+447308888874", "_blank")
               }
               className="w-full py-4 mt-8 font-bold transition bg-red-600 rounded-2xl hover:bg-red-700 hover:scale-105"
             >

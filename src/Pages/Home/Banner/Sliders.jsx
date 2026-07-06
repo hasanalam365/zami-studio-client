@@ -1,97 +1,86 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination, EffectCreative } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 /* ======================
-   SLIDER DATA
+   SLIDER DATA (SVG ONLY)
 ====================== */
-
 const slides = [
   {
-    title: "Modern Responsive",
+    title: "Modern & Responsive",
     highlight: "Web Development",
-    text: "High-performance, SEO-optimized, conversion-focused websites built for speed, security, and scalability.",
-    lottie: "https://assets10.lottiefiles.com/packages/lf20_qp1q7mct.json",
+    text: "High-performance, SEO-friendly and fully responsive websites built for speed, security, and scalability to grow your business online.",
+    icon: "/Web Development.svg",
   },
   {
-    title: "SEO-Driven",
+    title: "Engaging & SEO-Focused",
     highlight: "Content Writing",
-    text: "Strategic content crafted to rank higher, attract the right audience, and grow digital authority.",
-    lottie: "https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json",
+    text: "Well-researched, SEO-optimized content that attracts the right audience, builds authority, and improves search rankings.",
+    icon: "/SEO-content-writing.svg",
   },
   {
-    title: "AI Integration &",
-    highlight: "Business Automation",
-    text: "Seamless AI solutions to automate calls, emails, social media, and operations—making your business faster, smarter, and stress-free.",
-    lottie: "https://assets2.lottiefiles.com/packages/lf20_yd8fbnml.json",
+    title: "Creative & Professional",
+    highlight: "Video Editing",
+    text: "High-quality video editing for ads, social media, YouTube and branding content that captures attention and drives engagement.",
+    icon: "/Video Editing.svg",
   },
   {
-    title: "Custom",
-    highlight: "Software Development",
-    text: "Bespoke software solutions tailored to your workflow, enhanced with intelligent AI for maximum efficiency and scalability.",
-    lottie: "https://assets7.lottiefiles.com/packages/lf20_tno6cg2w.json",
+    title: "Modern Visual Identity",
+    highlight: "Graphic Design",
+    text: "Creative and impactful graphic design solutions including logos, banners, social media posts and brand identity systems.",
+    icon: "/Designer.svg",
   },
   {
-    title: "Complete",
-    highlight: "CRM Solutions",
-    text: "Flexible in-house or bespoke CRM systems designed to perfectly match how your business operates.",
-    lottie: "https://assets1.lottiefiles.com/packages/lf20_3vbOcw.json",
+    title: "Secure & Reliable",
+    highlight: "Domain & Hosting",
+    text: "Fast, secure UK-based domain registration and hosting services with 99.9% uptime and full technical support.",
+    icon: "/domain-hosting.svg",
   },
   {
-    title: "Business Growth with",
+    title: "Growth Driven",
     highlight: "Digital Marketing",
-    text: "High-performing Facebook, Google, YouTube & TikTok ads, AI-driven SEO, and custom funnels built to scale revenue.",
-    lottie: "https://assets8.lottiefiles.com/packages/lf20_w51pcehl.json",
+    text: "Data-driven marketing strategies across Google, Facebook, YouTube and TikTok to increase traffic, leads and revenue.",
+    icon: "/Digital Marketing Services.svg",
   },
   {
-    title: "Smart & Scalable",
-    highlight: "App Development",
-    text: "AI-powered mobile and web applications designed to improve user experience and streamline business operations.",
-    lottie: "https://assets2.lottiefiles.com/packages/lf20_kkflmtur.json",
+    title: "Rank Higher & Faster",
+    highlight: "SEO Optimization",
+    text: "Advanced on-page and off-page SEO strategies to improve visibility, rank higher on Google and bring organic traffic.",
+    icon: "/SEO.svg",
   },
   {
-    title: "Website Hosting &",
-    highlight: "Maintenance",
-    text: "Secure UK-based hosting, regular updates, and ongoing maintenance to keep your website fast, safe, and reliable.",
-    lottie: "https://assets5.lottiefiles.com/packages/lf20_kdx6cani.json",
+    title: "Professional Communication",
+    highlight: "Email Services",
+    text: "Business email setup and automation for professional communication, branding, and better customer engagement.",
+    icon: "/Mail.svg",
+  },
+  {
+    title: "Engage & Grow Audience",
+    highlight: "Social Media Marketing",
+    text: "Strategic social media management and advertising to grow your brand presence, followers, and engagement across platforms.",
+    icon: "/Social-Media-Marketing.svg",
   },
 ];
 
 const Sliders = () => {
-  const [animations, setAnimations] = useState({});
   const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    slides.forEach((slide) => {
-      fetch(slide.lottie)
-        .then((res) => res.json())
-        .then((data) =>
-          setAnimations((prev) => ({
-            ...prev,
-            [slide.lottie]: data,
-          }))
-        );
-    });
-  }, []);
 
   return (
     <section className="relative w-full h-[95vh] overflow-hidden bg-black">
 
-      {/* 🔴 PREMIUM BACKGROUND GLOW */}
+      {/* BACKGROUND GLOW */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,0,0,0.15),transparent_45%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.06),transparent_50%),radial-gradient(circle_at_50%_50%,rgba(255,0,0,0.08),transparent_60%)]" />
 
-      {/* MOVING RED GLOW */}
       <motion.div
         className="absolute w-[160%] h-[160%] bg-gradient-to-r from-red-600/10 via-black to-red-500/10 blur-3xl"
         animate={{ x: ["-20%", "10%", "-20%"], y: ["-10%", "15%", "-10%"] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* GRID (WHITE SUBTLE) */}
       <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:42px_42px]" />
 
       <Swiper
@@ -104,7 +93,6 @@ const Sliders = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-
             <div className="grid items-center h-full gap-10 px-6 mx-auto max-w-7xl md:grid-cols-2">
 
               {/* LEFT */}
@@ -114,12 +102,9 @@ const Sliders = () => {
                 transition={{ duration: 0.7 }}
                 className="text-white"
               >
-
                 <h1 className="text-4xl font-extrabold leading-tight md:text-6xl">
                   {slide.title}
-
                   <br />
-
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-white to-red-400">
                     {slide.highlight}
                   </span>
@@ -129,48 +114,43 @@ const Sliders = () => {
                   {slide.text}
                 </p>
 
-                {/* BUTTONS */}
                 <div className="flex gap-4 mt-8">
-
-                  <button className="px-6 py-3 font-semibold text-white transition-all bg-red-600 shadow-lg rounded-xl hover:bg-red-700 hover:scale-105 shadow-red-500/20">
+                  {/* <button className="px-6 py-3 font-semibold text-white transition-all bg-red-600 shadow-lg rounded-xl hover:bg-red-700 hover:scale-105 shadow-red-500/20">
                     Get Started
-                  </button>
+                  </button> */}
 
-                  <button className="px-6 py-3 font-semibold text-white border border-white/20 rounded-xl bg-white/5 backdrop-blur-xl hover:bg-white/10">
+                  <Link
+                    to="/services"
+                    className="px-6 py-3 font-semibold text-white bg-red-600 border rounded-xl backdrop-blur-xl hover:bg-red-700"
+                  >
                     View Services
-                  </button>
-
+                  </Link>
                 </div>
-
               </motion.div>
 
-              {/* RIGHT CARD */}
+              {/* RIGHT SVG */}
               <div className="flex justify-center">
 
-                {animations[slide.lottie] && activeIndex === index && (
-
+                {activeIndex === index && (
                   <motion.div
                     initial={{ opacity: 0, rotateY: 25, scale: 0.85 }}
                     animate={{ opacity: 1, rotateY: 0, scale: 1 }}
                     transition={{ duration: 0.9 }}
-                    className="relative p-8 border shadow-2xl rounded-3xl bg-white/5 border-white/10 backdrop-blur-2xl"
+                    className="relative p-8 shadow-2xl rounded-3xl "
                   >
-
-                    {/* RED GLOW BORDER */}
                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-600/20 via-black to-red-500/10 blur-2xl" />
 
-                    <div className="relative w-[420px] h-[380px]">
-                      <Lottie animationData={animations[slide.lottie]} loop />
-                    </div>
-
+                    <img
+                      src={slide.icon}
+                      alt={slide.highlight}
+                      className="relative w-[420px] h-[380px] object-contain"
+                    />
                   </motion.div>
-
                 )}
 
               </div>
 
             </div>
-
           </SwiperSlide>
         ))}
       </Swiper>
