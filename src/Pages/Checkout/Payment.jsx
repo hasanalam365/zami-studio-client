@@ -28,7 +28,7 @@ const Payment = () => {
           <div className="p-6 border border-red-400 ">
             <p className="font-semibold text-white">{plan}</p>
             <p className="mt-4 text-4xl font-extrabold text-red-400">
-              £{price}
+              ${price}
             </p>
           </div>
 

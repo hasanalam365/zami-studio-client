@@ -28,9 +28,9 @@ function ServicesCategories() {
     { id: 10, icon: <FaPaintBrush />, title: "Web Design & Maintenance", count: 7 },
     { id: 11, icon: <MdOndemandVideo />, title: "Web Hosting", count: 4 },
     { id: 12, icon: <FaPenFancy />, title: "Domain Names", count: 3 },
-    { id: 13, icon: <FaLaptopCode />, title: "App Development", count: 9 },
-    { id: 14, icon: <FaChartLine />, title: "CRM Systems", count: 5 },
-    { id: 15, icon: <FaLaptopCode />, title: "Software Development", count: 11 },
+   
+
+   
     { id: 16, icon: <MdOndemandVideo />, title: "Email Services", count: 4 },
     { id: 17, icon: <FaBullhorn />, title: "Google Visibility", count: 6 },
   ];

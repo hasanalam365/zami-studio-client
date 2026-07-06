@@ -48,7 +48,7 @@ const CheckOutForm = ({ plan, price }) => {
       company: form.company || "N/A",
       message: form.note || "No message",
       plan,
-      price: `£${price}`,
+      price: `$${price}`,
       transaction_id: paymentId,
       time: new Date().toLocaleString(),
     };
@@ -91,6 +91,8 @@ const CheckOutForm = ({ plan, price }) => {
             name: form.name,
             email: form.email,
             address: { country: "GB" },
+            
+          
           },
         },
       });
@@ -173,7 +175,7 @@ const CheckOutForm = ({ plan, price }) => {
         disabled={loading}
         className="w-full py-4 text-lg font-bold text-white transition bg-red-600 rounded-xl"
       >
-        {loading ? "Processing..." : `Pay £${price}`}
+        {loading ? "Processing..." : `Pay $${price}`}
       </button>
 
     </form>

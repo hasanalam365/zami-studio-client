@@ -11,8 +11,8 @@ const StatsSection = () => {
   });
 
   const stats = [
-    { number: 1359, label: "Total Orders" },
-    { number: 20, label: "Services Item", suffix: "+" },
+    { number: 959, label: "Total Orders" },
+    { number: 8, label: "Services Item", suffix: "+" },
     { number: 326, label: "Reviews" },
   ];
 

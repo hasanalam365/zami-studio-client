@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-/* ---------- CLEAN PREMIUM RED SYSTEM ---------- */
+/* ---------- COLOR SYSTEM ---------- */
 const colorMap = {
   standard: {
     accent: "from-red-700 to-red-500",
@@ -193,56 +193,58 @@ export default function PricingCards() {
               setRevealed((r) => ({ ...r, [card.id]: true }))
             }
           >
+
             {/* CARD */}
             <div className="flex flex-col h-full p-6 border bg-black/80 backdrop-blur-xl rounded-3xl border-white/10">
 
-              {/* TITLE */}
+              {/* TITLE (STATIC) */}
               <h3 className="text-3xl font-extrabold text-center text-white">
                 {card.title}
               </h3>
 
-              {/* CONTENT */}
-              <AnimatePresence>
+              {/* SUBTITLE (STATIC) */}
+              <p className="mb-4 text-center text-white/60">
+                {card.subtitle}
+              </p>
+
+              {/* TABS (STATIC - NO ANIMATION) */}
+              <div className="flex justify-center mb-6">
+                {card.plans.map((plan) => (
+                  <button
+                    key={plan.key}
+                    onClick={() =>
+                      setActivePlans((p) => ({
+                        ...p,
+                        [card.id]: plan.key,
+                      }))
+                    }
+                    className={`px-4 py-1 mx-1 rounded-full text-sm font-semibold transition
+                    ${
+                      activePlans[card.id] === plan.key
+                        ? "bg-red-600 text-white"
+                        : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {plan.name}
+                  </button>
+                ))}
+              </div>
+
+              {/* ONLY PRICE + FEATURES + CTA ANIMATE */}
+              <AnimatePresence mode="wait">
                 {revealed[card.id] && (
                   <motion.div
-                    key={activePlan.key}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 40 }}
-                    transition={{ duration: 0.6 }}
+                    key={activePlans[card.id]}
+                    initial={{ opacity: 0, x: 80 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -80 }}
+                    transition={{ duration: 0.4 }}
                     className="flex flex-col flex-1"
                   >
-                    {/* SUBTITLE */}
-                    <p className="mb-4 text-center text-white/60">
-                      {card.subtitle}
-                    </p>
-
-                    {/* TABS */}
-                    <div className="flex justify-center mb-6">
-                      {card.plans.map((plan) => (
-                        <button
-                          key={plan.key}
-                          onClick={() =>
-                            setActivePlans((p) => ({
-                              ...p,
-                              [card.id]: plan.key,
-                            }))
-                          }
-                          className={`px-4 py-1 mx-1 rounded-full text-sm font-semibold transition
-                          ${
-                            activePlans[card.id] === plan.key
-                              ? "bg-red-600 text-white"
-                              : "text-white/60 hover:text-white"
-                          }`}
-                        >
-                          {plan.name}
-                        </button>
-                      ))}
-                    </div>
 
                     {/* PRICE */}
                     <h4 className="mb-4 text-5xl font-extrabold text-center text-white">
-                      £{activePlan.price}
+                      ${activePlan.price}
                     </h4>
 
                     {/* FEATURES */}
@@ -269,13 +271,16 @@ export default function PricingCards() {
                     >
                       Subscribe Now
                     </button>
+
                   </motion.div>
                 )}
               </AnimatePresence>
+
             </div>
           </motion.div>
         );
       })}
+
     </div>
   );
 }
