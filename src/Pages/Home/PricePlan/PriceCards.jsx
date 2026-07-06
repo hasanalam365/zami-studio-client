@@ -185,14 +185,17 @@ export default function PricingCards() {
         const colors = colorMap[activePlan.type];
 
         return (
-          <motion.div
-            key={card.id}
-            whileHover={{ scale: 1.03 }}
-            className={`p-[1px] rounded-3xl bg-gradient-to-br ${colors.ring}`}
-            onViewportEnter={() =>
-              setRevealed((r) => ({ ...r, [card.id]: true }))
-            }
-          >
+         <motion.div
+  key={card.id}
+  initial={{ opacity: 0, y: 60, scale: 0.95 }}
+  animate={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ duration: 0.6, ease: "easeOut", delay: card.id * 0.1 }}
+  whileHover={{ scale: 1.03 }}
+  className={`p-[1px] rounded-3xl bg-gradient-to-br ${colors.ring}`}
+  onViewportEnter={() =>
+    setRevealed((r) => ({ ...r, [card.id]: true }))
+  }
+>
 
             {/* CARD */}
             <div className="flex flex-col h-full p-6 border bg-black/80 backdrop-blur-xl rounded-3xl border-white/10">
